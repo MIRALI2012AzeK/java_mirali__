@@ -2,29 +2,40 @@ package Polyporphism;
 
 public class Polyporhpismdz {
     public static void main(String[] args) {
-    BankAccount bankacc = new BankAccount();
-    bankacc.balance = 2500;
-    bankacc.deposit(500);
-    bankacc.withdraw(1000);
-    bankacc.accountType();
+    BankAccount[] bankAccounts = {
+            new SavingsAccount(),
+            new CheckingAccount(),
+            new BusinessAccount()
+    };
+
+    for (BankAccount account : bankAccounts) {
+        account.accountType();
+        account.deposit(1000);
+        account.withdraw(450.50);
+        System.out.println("Current balance: "+ account.balance);
+        System.out.println("--------------------------------------");
+    }
+
     }
 }
 
 
 class BankAccount {
-    double balance;
+    double balance = 0;
 
 
     void withdraw(double amount){
-        System.out.println("----");
+        balance -= amount;
+        System.out.println("Было снято:" + amount);
     }
 
     void deposit (double amount){
-        System.out.println("----");
+        balance += amount;
+        System.out.println("Депозит:" + amount);
     }
 
     void accountType(){
-        System.out.println("----");
+        System.out.println("Банковский счет");
     }
     }
 
@@ -32,6 +43,7 @@ class BankAccount {
     class SavingsAccount extends BankAccount {
     @Override
         void withdraw (double amount){
+        balance -= amount;
         System.out.println("Снятие со сберегательного счета");
     }
 
@@ -44,6 +56,7 @@ class BankAccount {
     class CheckingAccount extends BankAccount {
     @Override
     void withdraw(double amount) {
+        balance += amount;
         System.out.println("Снятие с расчетного счета");
     }
 
