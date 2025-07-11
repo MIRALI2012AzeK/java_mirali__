@@ -1,49 +1,43 @@
 package encapulation;
 
-public class User{
+public class User {
     private String username;
+    private String email;
     private String password;
-    private String age;
-    private String school;
-    private String gender;
 
-    public String getUsername() {
-        return username;
-    }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+
+    public void setEmail(String email) {
+        if (email.contains("@")) {
+            this.email = email;
+        } else {
+            System.out.println("Неверный email!");
+            this.email = null;
+        }
     }
+
 
     public void setPassword(String password) {
-        this.password = password;
+        if (password.length() >= 4) {
+            this.password = password;
+        } else {
+            System.out.println("Пароль слишком короткий!");
+            this.password = null;
+        }
     }
 
-    public String getSchool() {
-        return school;
-    }
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void showProfile() {
+        System.out.println("Имя пользователя: " + username);
+        if (email != null) {
+            System.out.println("Email: " + email);
+        } else {
+            System.out.println("Email не задан");
+        }
     }
 }
+
